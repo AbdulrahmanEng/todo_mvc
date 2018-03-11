@@ -1,0 +1,24 @@
+<%- include('../../views/header')%>
+    <h1><%= title %></h1>
+    <% if (flash) { %>
+    <h4 class="flash"><%= flash.message %></h4>
+    <% } %>
+    <form action="/login" method="post" class="form">
+        <div class="form__block">
+            <a href="/signup">Register</a>
+        </div>
+        <div class="form__block">
+                <label for="email">Email: </label>
+                <div>
+                    <input id="email" type="text" name="email">
+                </div>
+        </div>
+        <div class="form__block">
+            <label for="password">Password: </label>
+            <div>
+                <input id="password" type="password" name="password">
+            </div>
+        </div>
+        <input type="submit" value="Login">
+    </form>
+<%- include('../../views/footer')%>
