@@ -21,7 +21,7 @@ module.exports = function (sequelize, Sequelize) {
             defaultValue: false
         },
     }, {
-            paranoid: true,
+            paranoid: false,
             underscored: true
         });
     return Task;

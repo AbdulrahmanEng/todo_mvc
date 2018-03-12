@@ -63,7 +63,7 @@ const models = require('./database/models');
 
 // Syncronise database.
 models.sequelize.sync().then(() => {
-    console.log('Database is nominal.');
+    console.log(`Connected to ${process.env.NODE_ENV} database.`);
     // Open port and start Express server.
     app.listen(app.get('port'), (error) => {
         if (error) {

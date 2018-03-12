@@ -1,0 +1,24 @@
+<%- include('../../views/header')%>
+    <h1><%= title %></h1>
+    <% if (flash) { %>
+      <h4 class="flash"><%= flash.message %></h4>
+    <% } %>
+    <form action="/todos/<%= task.id %>/update" method="post" class="form">
+        <div class="form__block">
+            <a href="/todos">Back</a>
+        </div>
+        <div class="form__block">
+            <label for="task">Task: </label>
+            <div>
+                <input id="task" type="text" name="task" value="<%= task.name %>">
+            </div>
+        </div>
+        <div class="form__block">
+            <label for="complete">Complete:</label>
+            <div>
+                <input type="checkbox" name="complete" id="complete" <%=task.complete?'checked':''%>>
+            </div>
+        </div>
+        <input type="submit" value="Update">
+    </form>
+<%- include('../../views/footer')%>

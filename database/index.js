@@ -55,30 +55,30 @@ const database = {
                     email: req.body.email
                 }
             })
-                .then(user => {
-                    const dbUser = user.dataValues;
-                    console.log('logging in', dbUser);
-                    // Compare form password with password from user table.
-                    bCrypt.compare(req.body.password, dbUser.password, (err, result) => {
-                        if (err) {
-                            console.error(error);
-                        }
-                        if (result === true) {
-                            const userInfo = {
-                                id: dbUser.id,
-                                forename: dbUser.forename,
-                                surname: dbUser.surname,
-                                join_date: dbUser.createdAt
-                            };
-                            req.session.user = userInfo;
-                            req.app.locals.user = userInfo;
-                            res.redirect('/todos');
-                        }
-                        else {
-                            res.redirect('/login');
-                        }
-                    });
+            .then(user => {
+                const dbUser = user.dataValues;
+                // Compare form password with password from user table.
+                bCrypt.compare(req.body.password, dbUser.password, (err, result) => {
+                    if (err) {
+                        console.error(error);
+                    }
+                    if (result === true) {
+                        const userInfo = {
+                            id: dbUser.id,
+                            forename: dbUser.forename,
+                            surname: dbUser.surname,
+                            join_date: dbUser.createdAt
+                        };
+                        req.session.user = userInfo;
+                        req.app.locals.user = userInfo;
+                        res.redirect('/todos');
+                    }
                 });
+            })
+            .catch(error=>{
+                console.log('User does not exist.');
+                res.redirect('/login');
+            })
         }
     }
 }

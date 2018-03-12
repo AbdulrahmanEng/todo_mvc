@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const restrict = require('../../middleware/restrict');
+
 const users = [
     {name:'john'},
     {name:'jane'},
@@ -8,7 +10,7 @@ const users = [
     {name: 'jill'}
 ];
 
-app.get('/', (req, res) => {
+app.get('/', restrict, (req, res) => {
     res.send(users);
 });
 

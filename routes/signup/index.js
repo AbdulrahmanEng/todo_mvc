@@ -1,4 +1,3 @@
-// @todo create and log in users without passport. passport is wasting too much time.
 const express = require('express');
 const app = express();
 const database = require('../../database');

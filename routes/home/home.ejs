@@ -1,6 +1,7 @@
 <%- include('../../views/header')%>
 <% if (loggedIn) { %> 
     <div>
+        <div>Hello <%= user.forename %>.</div>
         <a href="/logout">Log Out</a>
     </div>
 <% } else { %>

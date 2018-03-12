@@ -6,7 +6,7 @@ app.set('view engine', 'ejs');
 
 /* GET home page. */ 
 app.get('/', (req, res) => {
-    res.render('home', {loggedIn: req.session.user!==undefined});
+    res.render('home', {user: req.session.user, loggedIn: req.session.user!==undefined});
 });
 
 module.exports = app;

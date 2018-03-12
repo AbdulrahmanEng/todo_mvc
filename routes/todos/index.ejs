@@ -1,0 +1,25 @@
+<%- include('../../views/header')%>
+<h1><%= title %></h1>
+<div class="todo-container">
+    <ul class="todos">
+        <% for (var i=0;i < todos.length;i++) { %>
+            <li class="todo">
+                <span class="todo__text" id=<%= todos[i].complete?'complete':''%>>
+                    <%= todos[i].body %>
+                </span>
+                <button><a href="/todos/<%= todos[i].id%>/update">Update</a></button>
+                <button><a href="/todos/<%= todos[i].id%>/delete">Delete</a></button>
+            </li>
+        <% } %>
+    </ul>
+</div>
+<form action="/todos" method="post" class="form">
+    <div class="form__block">
+            <label for="body">Task: </label>
+            <div>
+                <input id="task" type="text" name="task" placeholder="eg. Go hiking.">
+            </div>
+        </div>
+    <input type="submit" value="Save">
+</form>
+<%- include('../../views/footer')%>
