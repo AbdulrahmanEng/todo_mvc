@@ -4,6 +4,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const env = require('dotenv').load();
+const expressValidator = require('express-validator');
 
 // Create an instance of Express.
 const app = express();
@@ -17,14 +18,13 @@ app.use(logger('dev'));
 // Configure body parser for incoming requests.
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(expressValidator());
 // Initialize express-session.
-var sess = {
+app.use(session({
     secret: 'keyboard cat',
     saveUninitialized: false,
-    resave: false,
-    cookie: {}
-}
+    resave: false
+}));
 
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
@@ -32,7 +32,6 @@ if (app.get('env') === 'production') {
     sess.cookie.maxAge = 3600000
 }
 
-app.use(session(sess));
 
 // Set view directory and template engine.
 app.set('views', './views');

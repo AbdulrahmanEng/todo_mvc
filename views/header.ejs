@@ -8,4 +8,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/static/css/main.css" />
 </head>
 <body>
+    <% if (loggedIn) { %> 
+        <div>
+            <div>Hello <%= user.forename %>.</div>
+            <a href="/logout" class="link">Log Out</a>
+        </div>
+    <% } else { %>
+        <div>
+            <a href="/login" class="link">Log In</a>
+        </div>
+        <% } %>
 <!-- Content -->

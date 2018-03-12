@@ -5,17 +5,16 @@ const database = require('../../database');
 app.set('views', __dirname);
 app.set('view engine', 'ejs');
 
-// Page data.
-const data = {
-    title: 'Register',
-    flash: {
-        message: null
-    }
-};
-
 /* GET signup page. */
-app.get('/', (req, res) => {
-    res.render('form', data);
+app.get('/', (req, res) => {   
+    res.render('form', {
+        title: 'Register',
+        flash: {
+            message: null
+        },
+        errors: req.session.errors,
+        loggedIn: req.session.user!==undefined
+    });
 });
 
 /* POST to signup page. */

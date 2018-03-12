@@ -1,13 +1,3 @@
 <%- include('../../views/header')%>
-<% if (loggedIn) { %> 
-    <div>
-        <div>Hello <%= user.forename %>.</div>
-        <a href="/logout">Log Out</a>
-    </div>
-<% } else { %>
-    <div>
-        <a href="/login">Log In</a>
-    </div>
-    <% } %>
 <h1>TODO MVC</h1>
 <%- include('../../views/footer')%>

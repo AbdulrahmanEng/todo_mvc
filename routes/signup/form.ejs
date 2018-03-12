@@ -3,9 +3,18 @@
     <% if (flash) { %>
       <h4 class="flash"><%= flash.message %></h4>
     <% } %>
+    <% if (errors) { %>
+        <% for (var i=0;i < errors.length;i++) { %>
+            <li class="error">
+                <span class="error__text">
+                    <%= errors[i].msg %>
+                </span>
+            </li>
+        <% } %>
+    <% } %>
     <form action="/signup" method="post" class="form">
         <div class="form__block">
-            <a href="/login">Sign In</a>
+            <a href="/login" class="form__link">Sign In</a>
         </div>
         <div class="form__block">
             <label for="email">Email: </label>
@@ -26,9 +35,10 @@
                 </div>
             </div>
         <div class="form__block">
+            <p>Passwords must be at least 5 chars long and contain one number</p>
             <label for="password">Password: </label>
             <div>
-                <input id="password" type="password" name="password" value="secret" required>
+                <input id="password" type="password" name="password" value="secret1" required>
             </div>
         </div>
         <input type="submit" value="Register">

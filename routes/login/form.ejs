@@ -3,9 +3,18 @@
     <% if (flash) { %>
     <h4 class="flash"><%= flash.message %></h4>
     <% } %>
+    <% if (errors) { %>
+        <% for (var i=0;i < errors.length;i++) { %>
+            <li class="error">
+                <span class="error__text">
+                    <%= errors[i].msg %>
+                </span>
+            </li>
+        <% } %>
+    <% } %>
     <form action="/login" method="post" class="form">
         <div class="form__block">
-            <a href="/signup">Register</a>
+            <a href="/signup" class="form__link">Register</a>
         </div>
         <div class="form__block">
                 <label for="email">Email: </label>

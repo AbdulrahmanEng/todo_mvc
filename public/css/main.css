@@ -7,6 +7,10 @@ a {
     color: black;
 }
 
+p {
+    font-size: small
+}
+
 li {
     margin: .5rem 0;
 }
@@ -14,8 +18,22 @@ li {
 .form__block {
     margin: .5rem 0;
 }
-
+.link, .form__link {
+    text-decoration: underline;
+}
 #complete {
     text-decoration: line-through;
     margin-right: .5rem;
+}
+
+.error {
+    list-style: none;
+    margin: 1.25rem 0;
+}
+
+.error__text {
+    background-color: #F44336;
+    color: white;
+    padding: .5rem;
+    border-radius: .25rem;
 }

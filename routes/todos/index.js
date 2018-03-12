@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const Task = require('../../database/models').task;
+const { sanitizeBody } = require('express-validator/filter');
 
 app.set('views', __dirname);
 app.set('view engine', 'ejs');
@@ -9,7 +10,6 @@ const restrict = require('../../middleware/restrict');
 
 /* GET /todos route */
 app.get('/', restrict, (req, res) => {
-    console.log('SESSION:', req.session)
     const userId = req.session.user.id;
     Task.findAll({
         where: {
@@ -17,31 +17,46 @@ app.get('/', restrict, (req, res) => {
         }
     })
         .then(tasks => {
-            res.render('index', { title: 'Tasks', todos: tasks });
+            res.render('index', {
+                title: 'Tasks',
+                todos: tasks,
+                loggedIn: req.session.user !== undefined,
+                user: req.session.user
+            });
         })
         .catch(error => {
             console.log('Task search error:', error);
-            res.render('index', { title: 'Tasks', todos: [] });
+            res.render('index', {
+                title: 'Tasks',
+                todos: [],
+                loggedIn: req.session.user !== undefined,
+                user: req.session.user
+            });
         });
 });
 
 /* POST /todos route */
-app.post('/', restrict, (req, res) => {
-    const userId = req.session.user.id;
-    const data = {
-        user_id: userId,
-        body: req.body.task,
-        completed: false
+app.post('/', sanitizeBody('task'), restrict, (req, res) => {
+    // If there is a task save it.
+    if (req.body.task) {
+        const userId = req.session.user.id;
+        const data = {
+            user_id: userId,
+            body: req.body.task,
+            completed: false
+        }
+        Task.create(data)
+            .then(newTask => {
+                console.log('New task:', newTask);
+                res.redirect('/todos');
+            })
+            .catch(error => {
+                console.error('Task model error:', error);
+                res.redirect('/todos');
+            });
+    } else {
+        res.redirect('/todos');
     }
-    Task.create(data)
-        .then(newTask => {
-            console.log('New task:', newTask);
-            res.redirect('/todos');
-        })
-        .catch(error => {
-            console.error('Task model error:', error);
-            res.redirect('/todos');
-        });
 });
 
 /* GET todo update page */
@@ -63,7 +78,9 @@ app.get('/:id/update', restrict, (req, res) => {
                 id: task.id,
                 name: task.body,
                 complete: task.complete
-            }
+            },
+            loggedIn: req.session.user !== undefined,
+            user: req.session.user
         };
         res.render('form', data);
     })
