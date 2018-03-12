@@ -1,6 +1,6 @@
 # TODO MVC
 
-TODO app with CRUD functionalities and authentication system. Built with Node, Sequelize and PostgreSQL.
+Node.js task management app with CRUD functionalities, Express.js routing, input sanitization and authentication.
 
 ## Instructions
 
