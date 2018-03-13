@@ -4,9 +4,10 @@ Node.js task management app with CRUD functionalities, Express.js routing, input
 
 ## Instructions
 
-1. Create a todo_mvc_dev database.
-2. run `npm install`
-2. run `npm start`
+1. Set NODE_ENV to development.
+2. Create a todo_mvc_dev or todo_mvc_prod database.
+3. run `npm install`
+4. run `npm start`
 
 ## Dependencies
 
@@ -19,3 +20,9 @@ Node.js task management app with CRUD functionalities, Express.js routing, input
 * express-validator
 * pg
 * sequelize
+
+## Testing
+
+1. Set NODE_ENV to test.
+2. Create a `todo_mvc_test` database.
+3. Run npm test.

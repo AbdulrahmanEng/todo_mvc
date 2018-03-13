@@ -73,3 +73,5 @@ models.sequelize.sync().then(() => {
 }).catch((err) => {
     console.error(err, 'Could not sync with the database.')
 });
+
+module.exports = app;

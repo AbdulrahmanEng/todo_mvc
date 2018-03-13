@@ -7,17 +7,19 @@
         "dialect": "postgres"
     },
     "test": {
-        "username": "",
-        "password": null,
-        "database": "",
-        "host": "",
-        "dialect": "postgres"
+        "username": "postgres",
+        "password": "password",
+        "database": "todo_mvc_test",
+        "host": "127.0.0.1",
+        "dialect": "postgres",
+        "logging":false
     },
     "production": {
         "username": "postgres",
         "password": "password",
         "database": "todo_mvc_prod",
         "host": "127.0.0.1",
-        "dialect": "postgres"
+        "dialect": "postgres",
+        "logging":false
     }
 }
